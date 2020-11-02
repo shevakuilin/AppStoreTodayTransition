@@ -14,6 +14,9 @@
 		77442800254FAEA7002F8EB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 774427FF254FAEA7002F8EB4 /* Assets.xcassets */; };
 		77442803254FAEA7002F8EB4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77442801254FAEA7002F8EB4 /* LaunchScreen.storyboard */; };
 		7744280B254FB869002F8EB4 /* UIView+shortHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7744280A254FB869002F8EB4 /* UIView+shortHandle.swift */; };
+		77442810254FF741002F8EB4 /* NestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7744280F254FF741002F8EB4 /* NestViewController.swift */; };
+		77442813254FFB0D002F8EB4 /* CustomPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77442812254FFB0D002F8EB4 /* CustomPresentationController.swift */; };
+		774428162550013C002F8EB4 /* UnfoldGraduallyAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774428152550013C002F8EB4 /* UnfoldGraduallyAnimator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		77442802254FAEA7002F8EB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		77442804254FAEA7002F8EB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7744280A254FB869002F8EB4 /* UIView+shortHandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+shortHandle.swift"; sourceTree = "<group>"; };
+		7744280F254FF741002F8EB4 /* NestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestViewController.swift; sourceTree = "<group>"; };
+		77442812254FFB0D002F8EB4 /* CustomPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresentationController.swift; sourceTree = "<group>"; };
+		774428152550013C002F8EB4 /* UnfoldGraduallyAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnfoldGraduallyAnimator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +64,43 @@
 		774427F5254FAEA3002F8EB4 /* ASTTransition */ = {
 			isa = PBXGroup;
 			children = (
+				7744281425500123002F8EB4 /* Animator */,
+				77442811254FFADB002F8EB4 /* Presentation */,
+				7744280E254FF726002F8EB4 /* Extension */,
 				774427F6254FAEA3002F8EB4 /* AppDelegate.swift */,
 				774427F8254FAEA3002F8EB4 /* SceneDelegate.swift */,
 				774427FA254FAEA3002F8EB4 /* ViewController.swift */,
-				7744280A254FB869002F8EB4 /* UIView+shortHandle.swift */,
+				7744280F254FF741002F8EB4 /* NestViewController.swift */,
 				774427FC254FAEA3002F8EB4 /* Main.storyboard */,
 				774427FF254FAEA7002F8EB4 /* Assets.xcassets */,
 				77442801254FAEA7002F8EB4 /* LaunchScreen.storyboard */,
 				77442804254FAEA7002F8EB4 /* Info.plist */,
 			);
 			path = ASTTransition;
+			sourceTree = "<group>";
+		};
+		7744280E254FF726002F8EB4 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				7744280A254FB869002F8EB4 /* UIView+shortHandle.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		77442811254FFADB002F8EB4 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				77442812254FFB0D002F8EB4 /* CustomPresentationController.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		7744281425500123002F8EB4 /* Animator */ = {
+			isa = PBXGroup;
+			children = (
+				774428152550013C002F8EB4 /* UnfoldGraduallyAnimator.swift */,
+			);
+			path = Animator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,7 +174,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77442810254FF741002F8EB4 /* NestViewController.swift in Sources */,
 				774427FB254FAEA3002F8EB4 /* ViewController.swift in Sources */,
+				774428162550013C002F8EB4 /* UnfoldGraduallyAnimator.swift in Sources */,
+				77442813254FFB0D002F8EB4 /* CustomPresentationController.swift in Sources */,
 				774427F7254FAEA3002F8EB4 /* AppDelegate.swift in Sources */,
 				774427F9254FAEA3002F8EB4 /* SceneDelegate.swift in Sources */,
 				7744280B254FB869002F8EB4 /* UIView+shortHandle.swift in Sources */,

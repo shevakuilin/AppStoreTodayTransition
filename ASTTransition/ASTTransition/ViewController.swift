@@ -16,19 +16,22 @@ private struct F {
 }
 
 class ViewController: UIViewController {
-    private lazy var cardView = UIImageView()
+    private lazy var nextVC = NestViewController()
+//    private var transitionDelegate: CustomPresentationController?
     
+    private lazy var cardView = UIImageView()
     private var f = F(x: 20, y: 200, width: UIScreen.main.bounds.size.width - 40, height: UIScreen.main.bounds.size.height - 400)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         initCard()
+        setTransitionDelegate()
     }
 }
 
 private extension ViewController {
     func initCard() {
-        cardView.contentMode = .scaleToFill
+        cardView.contentMode = .center
         cardView.image = ["genshin"].image
         cardView.frame = [f.x, f.y, f.width, f.height].frame
         cardView.layer.masksToBounds = true
@@ -44,6 +47,13 @@ private extension ViewController {
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(longPress(_:)))
         cardView.addGestureRecognizer(longPress)
     }
+    
+    func setTransitionDelegate() {
+//        transitionDelegate = CustomPresentationController(presentedViewController: nextVC, presenting: self)
+        nextVC.modalPresentationStyle = .fullScreen
+        nextVC.transitioningDelegate = self
+        nextVC.headImage = cardView.image
+    }
 }
 
 private extension ViewController {
@@ -51,9 +61,14 @@ private extension ViewController {
         // - Todo: 缩放 + 转场触发
         print("触发单击手势")
         guard self.cardView.bounds.size.width == f.width else { return }
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.3, animations: {
             self.cardView.bounds.size.width -= 20
             self.cardView.bounds.size.height -= 20
+        }) { _ in
+            self.present(self.nextVC, animated: true) {
+                self.cardView.bounds.size.width += 20
+                self.cardView.bounds.size.height += 20
+            }
         }
     }
     
@@ -69,15 +84,31 @@ private extension ViewController {
         } else if recognizer.state == .ended {
             // - Todo: 松手：转场
             print("长按松手")
+            self.present(self.nextVC, animated: true) {
+                self.cardView.bounds.size.width += 20
+                self.cardView.bounds.size.height += 20
+            }
         }
     }
 }
 
 // MARK: UIGestureRecognizerDelegate
-
 extension ViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         return true
     }
+}
+
+// MARK: UIViewControllerTransitioningDelegate
+extension ViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        let animator = UnfoldGraduallyAnimator()
+        animator.startRect = cardView.frame
+        return animator
+    }
+
+//    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        return UnfoldGraduallyAnimator()
+//    }
 }
 
