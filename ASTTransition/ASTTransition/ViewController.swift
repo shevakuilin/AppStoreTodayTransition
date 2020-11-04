@@ -22,12 +22,13 @@ class ViewController: UIViewController {
     private lazy var cardView = UIImageView()
     private lazy var subTitleLabel = UILabel()
     private lazy var mainTitleLabel = UILabel()
-    private lazy var contentTitle = UILabel()
+    private lazy var contentTitleLabel = UILabel()
     
     private var f = F(x: 20, y: 150, width: UIScreen.main.bounds.size.width - 40, height: UIScreen.main.bounds.size.height - 500)
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .systemGray5
         initCard()
         setTransitionDelegate()
     }
@@ -61,11 +62,11 @@ private extension ViewController {
         cardView.addSubview(mainTitleLabel)
         
         /// content title
-        contentTitle.frame = [20, f.height - 40, f.width - 100, 18].frame
-        contentTitle.font = [14].font
-        contentTitle.textColor = .white
-        contentTitle.text = "她的粉丝都是 App 里的朋友"
-        cardView.addSubview(contentTitle)
+        contentTitleLabel.frame = [20, f.height - 40, f.width - 100, 18].frame
+        contentTitleLabel.font = [14].font
+        contentTitleLabel.textColor = .white
+        contentTitleLabel.text = "她的粉丝都是 App 里的朋友"
+        cardView.addSubview(contentTitleLabel)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapAction))
         tap.delegate = self
