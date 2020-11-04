@@ -17,6 +17,18 @@ extension Collection where Iterator.Element == Int {
         let b = CGFloat(self[index(startIndex, offsetBy: 2)]) / CGFloat(255)
         return UIColor(red: r, green: g, blue: b, alpha: 1.0)
     }
+    
+    public var font: UIFont {
+        assert(self.count == 1, "You only specify size value with 1 integers")
+        let size = CGFloat(self[startIndex])
+        return UIFont.systemFont(ofSize: size)
+    }
+    
+    public var boldFont: UIFont {
+        assert(self.count == 1, "You only specify size value with 1 integers")
+        let size = CGFloat(self[startIndex])
+        return UIFont.boldSystemFont(ofSize: size)
+    }
 }
 
 extension Collection where Iterator.Element == CGFloat {
@@ -32,6 +44,7 @@ extension Collection where Iterator.Element == CGFloat {
 
 extension Collection where Iterator.Element == String {
     public var image: UIImage {
+        assert(self.count == 1, "You only specify name value with 1 string")
         return UIImage(named: self[startIndex]) ?? UIImage(named: "")!
     }
 }
