@@ -27,10 +27,7 @@ class NestViewController: UIViewController {
 private extension NestViewController {
     func initElements() {
         self.view.backgroundColor = [245, 119, 159].color
-        self.view.layer.masksToBounds = true
-        self.view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
-        self.view.layer.cornerRadius = 20
-        
+                
         let tap = UITapGestureRecognizer(target: self, action: #selector(back))
         self.view.addGestureRecognizer(tap)
         

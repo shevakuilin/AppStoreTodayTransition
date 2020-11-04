@@ -16,7 +16,7 @@ class UnfoldGraduallyAnimator: NSObject {
 extension UnfoldGraduallyAnimator: UIViewControllerAnimatedTransitioning {
     /// - Note: Duration of animation
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.4
+        return 0.25
     }
     
     /// - Note: Content of the animation
@@ -41,11 +41,15 @@ extension UnfoldGraduallyAnimator: UIViewControllerAnimatedTransitioning {
                 }
             }
             containerView.addSubview(to)
+            to.layer.masksToBounds = true
+            to.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
+            to.layer.cornerRadius = 15
             let duration = self.transitionDuration(using: transitionContext)
             UIView.animate(withDuration: duration, animations: {
                 if let toVC = toViewController {
                     to.frame = transitionContext.finalFrame(for: toVC)
-                    headImageView?.frame = [0, 0, to.bounds.width, 500].frame
+                    to.layer.cornerRadius = 1
+                    headImageView?.frame = [0, 0, to.bounds.width, 300].frame
                 }
             }) { _ in
                 let wasCancelled = transitionContext.transitionWasCancelled

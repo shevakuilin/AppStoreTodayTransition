@@ -20,7 +20,7 @@ class ViewController: UIViewController {
 //    private var transitionDelegate: CustomPresentationController?
     
     private lazy var cardView = UIImageView()
-    private var f = F(x: 20, y: 200, width: UIScreen.main.bounds.size.width - 40, height: UIScreen.main.bounds.size.height - 400)
+    private var f = F(x: 20, y: 150, width: UIScreen.main.bounds.size.width - 40, height: UIScreen.main.bounds.size.height - 500)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +36,7 @@ private extension ViewController {
         cardView.frame = [f.x, f.y, f.width, f.height].frame
         cardView.layer.masksToBounds = true
         cardView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
-        cardView.layer.cornerRadius = 20
+        cardView.layer.cornerRadius = 15
         cardView.isUserInteractionEnabled = true
         self.view.addSubview(cardView)
         
