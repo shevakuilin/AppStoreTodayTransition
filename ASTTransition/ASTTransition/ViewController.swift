@@ -20,6 +20,10 @@ class ViewController: UIViewController {
 //    private var transitionDelegate: CustomPresentationController?
     
     private lazy var cardView = UIImageView()
+    private lazy var subTitleLabel = UILabel()
+    private lazy var mainTitleLabel = UILabel()
+    private lazy var contentTitle = UILabel()
+    
     private var f = F(x: 20, y: 150, width: UIScreen.main.bounds.size.width - 40, height: UIScreen.main.bounds.size.height - 500)
 
     override func viewDidLoad() {
@@ -35,11 +39,33 @@ private extension ViewController {
         cardView.image = ["genshin"].image
         cardView.frame = [f.x, f.y, f.width, f.height].frame
         cardView.layer.masksToBounds = true
-//        cardView.clipsToBounds = true
         cardView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
         cardView.layer.cornerRadius = 15
         cardView.isUserInteractionEnabled = true
         self.view.addSubview(cardView)
+        
+        /// sub title
+        subTitleLabel.frame = [20, 20, f.width - 100, 15].frame
+        subTitleLabel.font = [13].font
+        subTitleLabel.textColor = .white
+        subTitleLabel.alpha = 0.4
+        subTitleLabel.text = "对话创作者"
+        cardView.addSubview(subTitleLabel)
+        
+        /// main title
+        mainTitleLabel.frame = [20, 50, f.width - 100, 60].frame
+        mainTitleLabel.font = [22].boldFont
+        mainTitleLabel.textColor = .white
+        mainTitleLabel.text = "黄玲：拍视频就是边玩边交朋友"
+        mainTitleLabel.numberOfLines = 0
+        cardView.addSubview(mainTitleLabel)
+        
+        /// content title
+        contentTitle.frame = [20, f.height - 40, f.width - 100, 18].frame
+        contentTitle.font = [14].font
+        contentTitle.textColor = .white
+        contentTitle.text = "她的粉丝都是 App 里的朋友"
+        cardView.addSubview(contentTitle)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapAction))
         tap.delegate = self
@@ -63,12 +89,10 @@ private extension ViewController {
         print("触发单击手势")
         guard self.cardView.bounds.size.width == f.width else { return }
         UIView.animate(withDuration: 0.3, animations: {
-            self.cardView.bounds.size.width -= 20
-            self.cardView.bounds.size.height -= 20
+            self.cardView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
         }) { _ in
             self.present(self.nextVC, animated: true) {
-                self.cardView.bounds.size.width += 20
-                self.cardView.bounds.size.height += 20
+                self.cardView.transform = CGAffineTransform.identity
             }
         }
     }
@@ -79,15 +103,13 @@ private extension ViewController {
             print("长按开始")
             guard self.cardView.bounds.size.width == f.width else { return }
             UIView.animate(withDuration: 0.3) {
-                self.cardView.bounds.size.width -= 20
-                self.cardView.bounds.size.height -= 20
+                self.cardView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
             }
         } else if recognizer.state == .ended {
             // - Todo: 松手：转场
             print("长按松手")
             self.present(self.nextVC, animated: true) {
-                self.cardView.bounds.size.width += 20
-                self.cardView.bounds.size.height += 20
+                self.cardView.transform = CGAffineTransform.identity
             }
         }
     }

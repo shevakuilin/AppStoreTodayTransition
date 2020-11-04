@@ -29,24 +29,52 @@ class NestViewController: UIViewController {
 
 private extension NestViewController {
     func initElements() {
-        self.view.backgroundColor = [245, 119, 159].color
+        self.view.backgroundColor = .white
                 
         let tap = UITapGestureRecognizer(target: self, action: #selector(back))
         self.view.addGestureRecognizer(tap)
         
+        /// head image
         let headImageView = UIImageView()
         headImageView.tag = 1001
         headImageView.image = headImage
         headImageView.contentMode = .scaleAspectFill
         self.view.addSubview(headImageView)
         
+        /// bottom content
         textLabel = UILabel()
         textLabel.tag = 1002
-        textLabel.font = UIFont.systemFont(ofSize: 20)
-        textLabel.textColor = .white
+        textLabel.font = [18].font
+        textLabel.textColor = .systemGray
         textLabel.text = "哔哩哔哩(゜-゜)つロ干杯~-bilibili"
         textLabel.textAlignment = .center
         self.view.addSubview(textLabel)
+        
+        /// sub title
+        let subTitleLabel = UILabel()
+        subTitleLabel.tag = 1003
+        subTitleLabel.font = [13].font
+        subTitleLabel.textColor = .white
+        subTitleLabel.alpha = 0.4
+        subTitleLabel.text = "对话创作者"
+        self.view.addSubview(subTitleLabel)
+        
+        /// main title
+        let mainTitleLabel = UILabel()
+        mainTitleLabel.tag = 1004
+        mainTitleLabel.font = [22].boldFont
+        mainTitleLabel.textColor = .white
+        mainTitleLabel.text = "黄玲：拍视频就是边玩边交朋友"
+        mainTitleLabel.numberOfLines = 0
+        self.view.addSubview(mainTitleLabel)
+        
+        /// content title
+        let contentTitle = UILabel()
+        contentTitle.tag = 1005
+        contentTitle.font = [14].font
+        contentTitle.textColor = .white
+        contentTitle.text = "她的粉丝都是 App 里的朋友"
+        self.view.addSubview(contentTitle)
     }
 }
 
