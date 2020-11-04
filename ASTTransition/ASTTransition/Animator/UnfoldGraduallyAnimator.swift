@@ -32,15 +32,11 @@ extension UnfoldGraduallyAnimator: UIViewControllerAnimatedTransitioning {
         toView?.frame = startRect
         /// Add toView
         if let to = toView {
-            var headImageView: UIImageView?
-            for subView in to.subviews {
-                if subView.isKind(of: UIImageView.classForCoder()) {
-                    subView.frame = [0, 0, startRect.width, startRect.height].frame
-                    headImageView = subView as? UIImageView
-                    break
-                }
-            }
+            let headImageView = huntSubViews(to, 1001)
+            let textLabel = huntSubViews(to, 1002)
+            textLabel?.isHidden = true
             containerView.addSubview(to)
+            /// Set cornerRadius
             to.layer.masksToBounds = true
             to.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
             to.layer.cornerRadius = 15
@@ -50,11 +46,28 @@ extension UnfoldGraduallyAnimator: UIViewControllerAnimatedTransitioning {
                     to.frame = transitionContext.finalFrame(for: toVC)
                     to.layer.cornerRadius = 1
                     headImageView?.frame = [0, 0, to.bounds.width, UIScreen.main.bounds.size.height/2].frame
+                    textLabel?.frame = [0, UIScreen.main.bounds.size.height/2 + 100, to.bounds.width, 25].frame
                 }
             }) { _ in
+                textLabel?.isHidden = false
+                /// complete transition
                 let wasCancelled = transitionContext.transitionWasCancelled
                 transitionContext.completeTransition(!wasCancelled)
             }
         }
+    }
+}
+
+private extension UnfoldGraduallyAnimator {
+    func huntSubViews(_ superView: UIView, _ viewTag: Int) -> UIView? {
+        var resultView: UIView?
+        for subView in superView.subviews {
+            if subView.tag == viewTag {
+                subView.frame = [0, 0, startRect.width, startRect.height].frame
+                resultView = subView
+                break
+            }
+        }
+        return resultView
     }
 }

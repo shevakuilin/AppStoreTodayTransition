@@ -17,12 +17,7 @@ class NestViewController: UIViewController {
         print("进入NextVC")
         initElements()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.textLabel.isHidden = false
-    }
-    
+
     override var prefersStatusBarHidden: Bool {
         return true
     }
@@ -40,18 +35,18 @@ private extension NestViewController {
         self.view.addGestureRecognizer(tap)
         
         let headImageView = UIImageView()
+        headImageView.tag = 1001
         headImageView.image = headImage
         headImageView.contentMode = .scaleAspectFill
         self.view.addSubview(headImageView)
         
         textLabel = UILabel()
+        textLabel.tag = 1002
         textLabel.font = UIFont.systemFont(ofSize: 20)
         textLabel.textColor = .white
         textLabel.text = "哔哩哔哩(゜-゜)つロ干杯~-bilibili"
         textLabel.textAlignment = .center
-        textLabel.frame = [0, self.view.bounds.height - 100, self.view.bounds.width, 25].frame
         self.view.addSubview(textLabel)
-        textLabel.isHidden = true
     }
 }
 
