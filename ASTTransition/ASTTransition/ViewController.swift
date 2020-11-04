@@ -31,10 +31,11 @@ class ViewController: UIViewController {
 
 private extension ViewController {
     func initCard() {
-        cardView.contentMode = .center
+        cardView.contentMode = .scaleAspectFill
         cardView.image = ["genshin"].image
         cardView.frame = [f.x, f.y, f.width, f.height].frame
         cardView.layer.masksToBounds = true
+//        cardView.clipsToBounds = true
         cardView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
         cardView.layer.cornerRadius = 15
         cardView.isUserInteractionEnabled = true

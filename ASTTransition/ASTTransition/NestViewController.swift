@@ -22,6 +22,14 @@ class NestViewController: UIViewController {
         super.viewDidAppear(animated)
         self.textLabel.isHidden = false
     }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return .slide
+    }
 }
 
 private extension NestViewController {
@@ -33,8 +41,7 @@ private extension NestViewController {
         
         let headImageView = UIImageView()
         headImageView.image = headImage
-        headImageView.contentMode = .center
-//        headImageView.frame = [0, 0, self.view.bounds.width, 500].frame
+        headImageView.contentMode = .scaleAspectFill
         self.view.addSubview(headImageView)
         
         textLabel = UILabel()

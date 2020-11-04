@@ -49,7 +49,7 @@ extension UnfoldGraduallyAnimator: UIViewControllerAnimatedTransitioning {
                 if let toVC = toViewController {
                     to.frame = transitionContext.finalFrame(for: toVC)
                     to.layer.cornerRadius = 1
-                    headImageView?.frame = [0, 0, to.bounds.width, 300].frame
+                    headImageView?.frame = [0, 0, to.bounds.width, UIScreen.main.bounds.size.height/2].frame
                 }
             }) { _ in
                 let wasCancelled = transitionContext.transitionWasCancelled
