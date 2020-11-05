@@ -33,6 +33,7 @@ extension UnfoldGraduallyAnimator: UIViewControllerAnimatedTransitioning {
         /// Add toView
         if let to = toView {
             let headImageView = huntSubViews(to, 1001)
+            headImageView?.frame = [0, 0, startRect.width, startRect.height].frame
             let textLabel = huntSubViews(to, 1002)
             textLabel?.isHidden = true
             containerView.addSubview(to)
@@ -63,7 +64,6 @@ private extension UnfoldGraduallyAnimator {
         var resultView: UIView?
         for subView in superView.subviews {
             if subView.tag == viewTag {
-                subView.frame = [0, 0, startRect.width, startRect.height].frame
                 resultView = subView
                 break
             }
