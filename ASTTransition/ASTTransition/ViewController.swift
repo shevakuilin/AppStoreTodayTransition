@@ -116,6 +116,13 @@ private extension ViewController {
     }
 }
 
+private extension ViewController {
+    func scale(_ frame: CGRect, _ scale: CGFloat) -> CGRect {
+        let size = frame.size
+        return [frame.origin.x, frame.origin.y, size.width * scale, size.height * scale].frame
+    }
+}
+
 // MARK: UIGestureRecognizerDelegate
 extension ViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
@@ -128,6 +135,7 @@ extension ViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         let animator = UnfoldGraduallyAnimator()
         animator.startRect = cardView.frame
+        animator.subLayouts = (scale(subTitleLabel.frame, 0.95), scale(mainTitleLabel.frame, 0.95), scale(contentTitleLabel.frame, 0.95))
         return animator
     }
 
